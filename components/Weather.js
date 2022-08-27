@@ -17,9 +17,14 @@ export default function Weather(props){
             .then((response) => response.json())
             .then((json) => {
                 setForecastInfo({
+                    icon: json.weather[0].icon,
                     main: json.weather[0].main,
                     description: json.weather[0].description,
-                    temp: json.main.temp
+                    temp: json.main.temp,
+                    feelslike: json.main.feels_like,
+                    humidity: json.main.humidity,
+                    pressure: json.main.pressure,
+                    windspeed: json.wind.speed
                 });
             })
             .catch((error) => {
