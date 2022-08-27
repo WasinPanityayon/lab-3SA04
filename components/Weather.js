@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Text, ImageBackground, StyleSheet} from "react-native";
+import { Text, ImageBackground, StyleSheet, View} from "react-native";
 import Forecast from "./Forecast";
 
 export default function Weather(props){
@@ -28,28 +28,63 @@ export default function Weather(props){
     }, [props.zipCode])
 
     return (
-        <ImageBackground source={require('../bg.jpg')} style={styles.backdrop}>
-        <Text style={styles.stylefont}>
-            Zip Code is {props.zipCode}.
-        </Text>
-        <Forecast {...forecastInfo}/>
-        </ImageBackground>
-
+            <ImageBackground source={require('../bg.jpg')} style={styles.backdrop}>
+            <View style={styles.container}>
+                <View>
+                    <Text style={styles.time}>23.00</Text>
+                    <Text style={styles.date}>Monday, June 7</Text>
+                    <Forecast {...forecastInfo}/>
+                </View>
+                <View style={styles.rightAlign}>
+                        <Text style={styles.textzipcode}>Zip Code</Text>
+                        <Text style={styles.zipcode}>{props.zipCode}</Text>
+                </View>
+            </View>
+            </ImageBackground>
     )  
 }
 
 const styles = StyleSheet.create({
     backdrop: {
-        flexDirection: 'column',
-        alignItems: 'center',
         width: '100%',
-        height: '100%',
+        height: '100%'
     },
-    stylefont: {
-        paddingTop: 25,
+
+    container: {
+        flex: 1.5,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        padding: 20
+    },
+
+    time: {
+        fontSize: 45,
+        color: 'black',
+        fontWeight: '300'
+    },
+
+    date: {
         fontSize: 25,
         color: 'black',
-        textAlign: 'center',
-        textAlignVertical: 'center'
-    }
+        fontWeight: '500'
+    },
+    rightAlign: {
+        textAlign: 'right',
+        marginTop: 20
+    },
+
+    textzipcode: {
+        fontSize: 20,
+        color: 'black',
+        fontWeight: '300',
+        textAlign: 'right'
+    },
+
+    zipcode: {
+        fontSize: 16,
+        color: 'black',
+        fontWeight: '500',
+        textAlign: 'right'
+    },
+
 });

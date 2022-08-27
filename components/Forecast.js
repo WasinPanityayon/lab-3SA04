@@ -3,44 +3,53 @@ import { StyleSheet, Text, View } from "react-native";
 
 export default function Forecast(props) {
     return (
-        <View style={styles.view}>
-            <Text style={styles.fontm}>{props.main}</Text>
-            <Text style={styles.fontd}>{props.description}</Text>
-            <Text style={styles.fontt}>{props.temp}
-                <Text style={styles.fontc}>°C</Text>
-            </Text>
+        <View style={styles.container}>
+            <View style={styles.textitem}>
+                <Text style={styles.textmain}>{props.main}</Text>
+                {/* <Text style={styles.textdescription}>{props.description}</Text> */}
+                <Text style={styles.textvalue}>{props.temp}
+                    <Text style={styles.fontunit}>°C</Text>
+                </Text>
+            </View>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    fontm: {
-        color: 'black',
-        fontSize: 35,
-        textAlign: 'center',
-        textAlignVertical: 'center',
-        paddingBottom: 20,
-        paddingTop: 15
+    container: {
+        backgroundColor: "#18181b99",
+        borderRadius: 10,
+        padding: 10,
+        marginTop: 10
     },
-    fontd: {
-        color: 'black',
-        fontSize: 18,
-        textAlign: 'center',
-        textAlignVertical: 'center',
-        paddingBottom: 25
+
+    textitem: {
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     },
-    fontt: {
-        color: 'black',
-        fontSize: 40,
-        textAlign: 'center',
-        textAlignVertical: 'center',
+
+    textmain: {
+        color : 'black',
+        fontSize: 14,
+        fontWeight: '500'
     },
-    fontc: {
-        color: 'black',
-        fontSize: 25,
-        textAlign: 'center',
-        textAlignVertical: 'center',
-        
+
+    textdescription: {
+        color : 'black',
+        fontSize: 14,
+        fontWeight: '500'
+    },
+
+    textvalue: {
+        color : 'black',
+        fontSize: 14,
+        fontWeight: '500'
+    },
+
+    fontunit: {
+        color : 'black',
+        fontSize: 10,
+        fontWeight: '500'
     }
 })
    
