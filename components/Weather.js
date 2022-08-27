@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Text, ImageBackground, StyleSheet, View} from "react-native";
 import Forecast from "./Forecast";
+import DateTime from "./DateTime";
 
 export default function Weather(props){
     const[forecastInfo, setForecastInfo]= useState({
@@ -26,13 +27,11 @@ export default function Weather(props){
             });
         }
     }, [props.zipCode])
-
     return (
             <ImageBackground source={require('../bg.jpg')} style={styles.backdrop}>
             <View style={styles.container}>
                 <View>
-                    <Text style={styles.time}>23.00</Text>
-                    <Text style={styles.date}>Monday, June 7</Text>
+                    <DateTime />
                     <Forecast {...forecastInfo}/>
                 </View>
                 <View style={styles.rightAlign}>
@@ -57,17 +56,6 @@ const styles = StyleSheet.create({
         padding: 20
     },
 
-    time: {
-        fontSize: 45,
-        color: 'black',
-        fontWeight: '300'
-    },
-
-    date: {
-        fontSize: 25,
-        color: 'black',
-        fontWeight: '500'
-    },
     rightAlign: {
         textAlign: 'right',
         marginTop: 20
