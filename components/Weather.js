@@ -24,7 +24,9 @@ export default function Weather(props){
                     feelslike: json.main.feels_like,
                     humidity: json.main.humidity,
                     pressure: json.main.pressure,
-                    windspeed: json.wind.speed
+                    windspeed: json.wind.speed,
+                    zipCode: props.zipCode,
+                    zipPlace: json.name
                 });
             })
             .catch((error) => {
@@ -34,16 +36,9 @@ export default function Weather(props){
     }, [props.zipCode])
     return (
             <ImageBackground source={require('../bg.jpg')} style={styles.backdrop}>
-            <View style={styles.container}>
-                <View>
-                    <DateTime />
+                <View style={styles.containermain}>
                     <Forecast {...forecastInfo}/>
                 </View>
-                <View style={styles.rightAlign}>
-                        <Text style={styles.textzipcode}>Zip Code</Text>
-                        <Text style={styles.zipcode}>{props.zipCode}</Text>
-                </View>
-            </View>
             </ImageBackground>
     )  
 }
@@ -54,30 +49,10 @@ const styles = StyleSheet.create({
         height: '100%'
     },
 
-    container: {
-        flex: 1.5,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
+    containermain: {
+        flex: 1,
+        flexDirection: 'column',
         padding: 20
-    },
-
-    rightAlign: {
-        textAlign: 'right',
-        marginTop: 20
-    },
-
-    textzipcode: {
-        fontSize: 20,
-        color: 'black',
-        fontWeight: '300',
-        textAlign: 'right'
-    },
-
-    zipcode: {
-        fontSize: 16,
-        color: 'black',
-        fontWeight: '500',
-        textAlign: 'right'
-    },
+    }
 
 });
